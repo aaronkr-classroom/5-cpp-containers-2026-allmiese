@@ -1,0 +1,49 @@
+// 5-2.cpp 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void permutedIndex(const string& line) {
+    vector<string> words;
+    string word;
+    stringstream ss(line);
+
+    while (ss >> word) {
+        words.push_back(word);
+    }
+
+    int n = words.size();
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << words[j] << " ";
+        }
+        cout << endl;
+
+        string first = words[0];
+        words.erase(words.begin());
+        words.push_back(first);
+    }
+}
+
+int main(void) {
+    vector<string> lines;
+    string line;
+
+    cout << "Enter text (empty line to finish): " << endl;
+
+    while (getline(cin, line)) {
+        if (line.empty()) break;
+        lines.push_back(line);
+    }
+
+    cout << "\nResult:\n";
+
+    for (const string& l : lines) {
+        permutedIndex(l);
+        cout << endl;
+    }
+
+    return 0;
+}
